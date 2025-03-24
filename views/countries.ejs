@@ -10,10 +10,10 @@
       <div class="card-container">
 
       <!-- Loop through all countries using a for loop -->
-
+      <% for (let i = 0; i < country.length; i++){ %>
          <div class="card">
              <!-- Use the flagURL key to set the image url -->
-            <img src="..." alt="USA flag">
+            <img src="<%= country[i].imagePath %>" alt="USA flag">
             <div class="info">
                <!-- Use the name key to set the h2 tag -->
                <h2>...</h2>
@@ -28,7 +28,7 @@
                <p>☢️ Nuclear Weapons: <span>...</span></p>
             </div>
          </div>
-
+         <% } %>
       <!-- End loop here -->
       </div>
    </body>
