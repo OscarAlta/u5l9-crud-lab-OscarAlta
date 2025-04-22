@@ -27,7 +27,7 @@ const Country = mongoose.model("Country", countrySchema, "Countries");
 // Create a POST route for "/add/country" that adds a country using the request body (3 points)
 // Use postman to add at least THREE different countries
 app.post("/add/country", async (req, res) =>{
-  const me = await new country({
+  const me = await new Country({
     name: "France",
     food: "ratatouille",
   }).save()
@@ -47,12 +47,20 @@ app.get("/", async (req, res) => {
 
 // Create a dynamic PATCH route handler for "/update/{name}" that modifies the population of the country specified in the path (3 points)
 // Test this route on post man
-
-
-
+app.patch("/update/:name", async (req, res) => {
+  const updated = await Country.findOneAndUpdate(
+    { country: req.params.name },
+    { population: req.body.population },
+    { new: true }
+  );
+  res.json(updated);
+});
 // Create a DELETE route handler for "/delete/country" that deletes a country of your choice (3 points)
 // Test this route on post man
-
+app.delete("/delete/country", async (req, res) => {
+  const deleted = await Country.findOneAndDelete({ country: req.body.country });
+  res.json(deleted);
+})
 
 async function startServer() {
   
