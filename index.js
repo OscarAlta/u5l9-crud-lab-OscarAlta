@@ -49,7 +49,7 @@ app.get("/", async (req, res) => {
 // Test this route on post man
 app.patch("/update/:name", async (req, res) => {
   const updated = await Country.findOneAndUpdate(
-    { country: req.params.name },
+    { country: req.params.country },
     { population: req.body.population },
     { new: true }
   );
