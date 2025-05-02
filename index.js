@@ -29,7 +29,6 @@ const Country = mongoose.model("Country", countrySchema, "Countries");
 app.post("/add/country", async (req, res) =>{
   const me = await new Country({
     name: "France",
-    food: "ratatouille",
   }).save()
    res.json(me);
  });
@@ -49,7 +48,7 @@ app.get("/", async (req, res) => {
 // Test this route on post man
 app.patch("/update/:name", async (req, res) => {
   const updated = await Country.findOneAndUpdate(
-    { country: req.params.country },
+    { country: req.params.name },
     { population: req.body.population },
     { new: true }
   );
